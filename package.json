@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start-client": "ng serve -o --port 3200 --host plan-your-activity.heroku.com --proxy-config proxy.conf.json",
+    "start-client": "ng serve -o --port 3200 --host plan-your-activity.herokuapp.net --proxy-config proxy.conf.json",
     "start-server": "tsc -p ./server/tsconfig.json --watch | nodemon ./dist/server/index.js --watch ./dist/server",
     "build-client": "rimraf ./dist/client && ng build --prod",
     "build-server": "rimraf ./dist/server && tsc -p ./server/tsconfig.json",
