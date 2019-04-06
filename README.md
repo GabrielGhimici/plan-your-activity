@@ -20,9 +20,10 @@ These 2 comes alog with NodeJS. To avoid errors we recommend install version use
 ## Get dependencies, build and run
  
 1. Install application dependencies - `npm install`.
-2. Compile and start server - `npm run start-server`.
-3. Compile and start client - `npm run start-client`.
-4. If no compile errors you can navigate `plan-your-activity.herokuapp.com:3200` in your browser.
+2. Add `127.0.0.1 plan-your-activity.heroku.com` to `etc/hosts` file
+3. Compile and start server - `npm run start-server`.
+4. Compile and start client - `npm run start-client`.
+5. If no compile errors you can navigate `plan-your-activity.heroku.com:3200` in your browser.
 
 ## Code view and edit
 
