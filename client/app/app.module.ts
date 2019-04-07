@@ -19,7 +19,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatProgressSpinnerModule, MatSnackBarModule
+  MatProgressSpinnerModule, MatSnackBarModule, MatToolbarModule, MatMenuModule, MatListModule
 } from '@angular/material';
 import { LoginEpics } from './store/login/login.epic';
 import { LoginService } from './core/login/login.service';
@@ -28,13 +28,27 @@ import { LoginActions } from './store/login/login.actions';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorInterceptor } from './core/http-interceptors/http-error.interceptor';
 import { XsfrHttpInterceptor } from './core/http-interceptors/http-xsfr.interceptor';
+import { AppContainerComponent } from './app-container/app-container.component';
+import { LoginGuard } from './login/login.guard';
+import { UserDataActions } from './store/user-data/user-data.actions';
+import { UserDataEpics } from './store/user-data/user-data.epic';
+import { UserDataService } from './core/user-data/user-data.service';
+import { LogoutActions } from './store/logout/logout.actions';
+import { LogoutEpic } from './store/logout/logout.epic';
+import { FirstLoginComponent } from './first-login/first-login.component';
+import { ChangePasswordActions } from './store/change-password/change-password.actions';
+import { ChangePasswordEpics } from './store/change-password/change-password.epic';
+import { ChangePasswordService } from './core/change-password/change-password.service';
+import { FirstLoginGuard } from './first-login/first-login.guard';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AppContainerComponent,
+    FirstLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +69,9 @@ import { XsfrHttpInterceptor } from './core/http-interceptors/http-xsfr.intercep
     MatProgressSpinnerModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatListModule,
     AppRoutingModule
   ],
   providers: [
@@ -70,7 +87,17 @@ import { XsfrHttpInterceptor } from './core/http-interceptors/http-xsfr.intercep
     },
     LoginActions,
     LoginEpics,
+    LoginGuard,
     LoginService,
+    LogoutActions,
+    LogoutEpic,
+    UserDataActions,
+    UserDataEpics,
+    UserDataService,
+    ChangePasswordActions,
+    ChangePasswordEpics,
+    FirstLoginGuard,
+    ChangePasswordService,
     RootEpics
   ],
   bootstrap: [AppComponent]

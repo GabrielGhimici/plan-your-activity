@@ -15,3 +15,42 @@ html, body {
   background-color: $app-background-color;
   font-family: $font-family;
 }
+
+.user-menu /deep/ {
+  .mat-menu-content {
+    width: 190px;
+    mat-list {
+      mat-list-item {
+        color: map_get($mat-blue-grey, 800);
+        user-select: none;
+        height: 60px !important;
+        .indicator{
+          font-size: 12px;
+          text-transform: uppercase;
+          opacity: 0.8;
+          &.custom-line-height {
+            line-height: 24px;
+            font-weight: bold;
+          }
+        }
+        .main-info {
+          font-size: 16px;
+          font-weight: bold;
+        }
+        mat-icon {
+          &.success {
+            color: $app-success;
+          }
+          &.warn {
+            color: $app-warn;
+          }
+        }
+      }
+    }
+    button {
+      color: map_get($mat-blue-grey, 800);
+      opacity: 0.8;
+      font-weight: bold;
+    }
+  }
+}

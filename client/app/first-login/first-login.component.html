@@ -1,0 +1,58 @@
+<mat-toolbar>
+  <img src="../../assets/images/logo-small.png"/>
+  <span class="header-spacer"></span>
+  <span class="user-accessor" [matMenuTriggerFor]="userMenu">{{(userDataLoading$ | async) ? 'Z' : (userProfile$ | async)?.name[0]}}</span>
+  <mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="user-menu">
+    <mat-list>
+      <mat-list-item>
+        <div mat-line class="indicator">Name: </div>
+        <div mat-line class="main-info">{{(userProfile$ | async)?.name}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line class="indicator">Email: </div>
+        <div mat-line class="main-info">{{(userProfile$ | async)?.email}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line class="indicator">Birthday: </div>
+        <div mat-line class="main-info">{{(userProfile$ | async)?.born}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line class="indicator">Team name: </div>
+        <div mat-line class="main-info">{{(userProfile$ | async)?.team.name}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line class="indicator custom-line-height">Verified account:</div>
+        <mat-icon  class="success" *ngIf="(userProfile$ | async)?.permanentAccount">done</mat-icon>
+        <mat-icon  class="warn" *ngIf="!(userProfile$ | async)?.permanentAccount">clear</mat-icon>
+      </mat-list-item>
+    </mat-list>
+    <button mat-menu-item (click)="logOutUser()">LogOut</button>
+  </mat-menu>
+</mat-toolbar>
+<div class="body-container">
+  <form #firstLoginForm="ngForm" (ngSubmit)="changePassword(firstLoginForm.value, firstLoginForm.valid)">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title><h2>Looks like you have a temporary password.</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input #email matInput ngControl ngModel name='password' placeholder="New password" type="password" required minlength="8">
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="!firstLoginForm.controls.password?.valid && firstLoginForm.controls.password?.errors?.required">New password is required</mat-error>
+          <mat-error *ngIf="!firstLoginForm.controls.password?.valid && firstLoginForm.controls.password?.errors?.minlength">New password should have at least 8 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input #password matInput ngControl ngModel name='passwordConfirmation' placeholder="New password confirmation" type="password" required minlength="8">
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="!firstLoginForm.controls.passwordConfirmation?.valid && firstLoginForm.controls.passwordConfirmation?.errors?.required">New password confirmation is required</mat-error>
+          <mat-error *ngIf="!firstLoginForm.controls.passwordConfirmation?.valid && firstLoginForm.controls.passwordConfirmation?.errors?.minlength">New password confirmation should have at least 8 characters</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button [disableRipple]="true">Update password</button>
+        <mat-spinner [diameter] = "36" [strokeWidth]="4" *ngIf="(changePasswordLoading$ | async)"></mat-spinner>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
