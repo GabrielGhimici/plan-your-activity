@@ -5,6 +5,7 @@ export class AddUserActions {
   public static readonly ADD_STARTED = '[ADD_USER_ACTIONS]ADD_STARTED';
   public static readonly ADD_SUCCEDED = '[ADD_USER_ACTIONS]ADD_SUCCEDED';
   public static readonly ADD_FAILED = '[ADD_USER_ACTIONS]ADD_FAILED';
+  public static readonly ADD_RESET_STATE = '[ADD_USER_ACTIONS]ADD_RESET_STATE';
 
   constructor() {}
 
@@ -26,6 +27,11 @@ export class AddUserActions {
     return {
       type: AddUserActions.ADD_FAILED,
       error
+    };
+  }
+  resetState() {
+    return {
+      type: AddUserActions.ADD_RESET_STATE
     };
   }
 }

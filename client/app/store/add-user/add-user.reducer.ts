@@ -32,6 +32,13 @@ export function addUserReducer(state: AddUserData = INITIAL_STATE, action: Paylo
         error: action.error,
       });
     }
+    case AddUserActions.ADD_RESET_STATE: {
+      return State.assign(state, [], {
+        added: false,
+        loading: false,
+        error: null,
+      });
+    }
     default: {
       return state;
     }

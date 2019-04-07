@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LogoutActions } from '../store/logout/logout.actions';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -6,13 +6,16 @@ import { isNullOrUndefined } from 'util';
 import { dispatch, select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { AddUserActions } from '../store/add-user/add-user.actions';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
+
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.scss']
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent implements OnInit, OnDestroy {
   @select(['addUserData', 'added']) public addUserAdded$: Observable<any>;
   @select(['addUserData', 'loading']) public addUserLoading$: Observable<any>;
   @select(['addUserData', 'error']) public addUserError$: Observable<any>;
@@ -20,6 +23,7 @@ export class AddUserComponent implements OnInit {
   @select(['userData', 'userProfile']) public userProfile$: Observable<any>;
   @select(['logoutData', 'loggedOut']) public userDataLogout$: Observable<boolean>;
   @ViewChild('addUserForm') private addUserForm: any;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private addUserActions: AddUserActions,
@@ -31,6 +35,7 @@ export class AddUserComponent implements OnInit {
   ngOnInit() {
     this.addUserAdded$
       .filter((value: boolean) => !isNullOrUndefined(value))
+      .takeUntil(this.ngUnsubscribe)
       .subscribe((value: boolean) => {
         if (value) {
           this.addUserForm.resetForm();
@@ -45,6 +50,7 @@ export class AddUserComponent implements OnInit {
       });
     this.addUserError$
       .filter((value: any) => !isNullOrUndefined(value))
+      .takeUntil(this.ngUnsubscribe)
       .subscribe((value: any) => {
         this.matSnackBar.open(
           'Oops! There were errors, please try again!',
@@ -54,6 +60,17 @@ export class AddUserComponent implements OnInit {
           }
         );
       });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+    this.resetState();
+  }
+
+  @dispatch()
+  resetState() {
+    return this.addUserActions.resetState();
   }
 
   @dispatch()
