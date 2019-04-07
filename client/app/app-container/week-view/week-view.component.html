@@ -1,0 +1,19 @@
+<mat-grid-list cols="8" rowHeight="30px" class="calendar-header">
+  <mat-grid-tile *ngFor="let day of days" [ngClass]="{'today-header':day.today}">
+    <div *ngIf="day.label" class="header-container">
+      <div>{{day.label}}</div>
+      <mat-icon *ngIf="isToday(day.dayDate) || isAfterToday(day.dayDate)" (click)="addEvent(day.dayDate)">add</mat-icon>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="8" rowHeight="9:1" class="calendar-body">
+  <mat-grid-tile *ngFor="let hour of hours" [ngClass]="{'today-cell':(hour.calendarDate && hour.calendarDate.today)}">
+    {{hour.label}}
+    <div class="hour-splitter" *ngFor="let hFrm of hour.calendarDate" [ngClass]="{'has-event': hFrm.hasEvent}" (click)="viewEvent(hFrm.hasEvent, hFrm.teamEvent, hFrm.startMoment)"></div>
+  </mat-grid-tile>
+</mat-grid-list>
+<div class="navigation-buttons">
+  <button mat-raised-button (click)="prevWeek()">PrevWeek</button>
+  <div class="month-cell">{{currentDate.format('MMMM YYYY')}}</div>
+  <button mat-raised-button (click)="nextWeek()">NextWeek</button>
+</div>

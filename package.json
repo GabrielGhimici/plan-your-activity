@@ -9,7 +9,7 @@
     "build-server": "rimraf ./dist/server && tsc -p ./server/tsconfig.json",
     "build": "npm run build-client && npm run build-server",
     "start": "node ./dist/server/server.js",
-    "test": "ng test",
+    "test": "ng test -sm=false",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

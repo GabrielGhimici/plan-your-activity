@@ -1,0 +1,98 @@
+@import "../../styles/palette";
+
+.calendar-header {
+  user-select: none;
+  mat-grid-tile {
+    border-right: 1px solid map_get($mat-blue-grey,400);
+    border-top: 1px solid map_get($mat-blue-grey,400);
+    background-color: map_get($mat-blue-grey,100);
+    &.today-header {
+      @include transparentBackgroundColor(0.8, $app-main-color);
+      color: white;
+      border-color: $app-main-color;
+    }
+    .header-container {
+      display: flex;
+      width: 100%;
+      div {
+        flex: 1 0 auto;
+        text-align: center;
+        height: 14px;
+        font-size: 14px;
+        line-height: 14px;
+        margin: auto;
+      }
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
+  mat-grid-tile:nth-child(1) {
+    border-left: none;
+    border-right: 1px solid map_get($mat-blue-grey,400);;
+    border-top: none;
+    border-bottom: none;
+    background: none;
+  }
+}
+
+.calendar-body {
+  border: 1px solid map_get($mat-blue-grey,400);
+
+  user-select: none;
+  mat-grid-tile {
+    border-right: 1px solid map_get($mat-blue-grey,400);
+    border-top: 1px solid map_get($mat-blue-grey,400);
+    background-color: $app-background-color;
+    &.today-cell {
+      @include transparentBackgroundColor(0.4, $app-main-color);
+      color: white;
+      border-color: $app-main-color;
+    }
+    .hour-splitter {
+      width: 100%;
+      height: 25%;
+      &.has-event {
+        background-color: green;
+        cursor: pointer;
+      }
+    }
+    /deep/.mat-figure {
+      flex-direction: column;
+    }
+  }
+
+  mat-grid-tile:nth-child(8n+1) {
+    background-color: map_get($mat-blue-grey,100);
+    .hour-splitter {
+      display: none;
+    }
+  }
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  button {
+    background-color: $app-main-color;
+    color: white;
+    font-weight: 500;
+    margin-right: 15px;
+  }
+
+  button:last-of-type {
+    margin-right: 0;
+  }
+
+  .month-cell {
+    line-height: 36px;
+    height: 36px;
+    margin-right: 15px;
+    border: 1px solid map_get($mat-blue-grey,400);
+    background-color: $app-background-color;
+    border-radius: 2px;
+    padding: 0 15px;
+    user-select: none;
+  }
+}

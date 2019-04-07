@@ -16,6 +16,10 @@ html, body {
   font-family: $font-family;
 }
 
+.mat-dialog-container {
+  background-color: $card-background-color;
+}
+
 .user-menu /deep/ {
   .mat-menu-content {
     width: 190px;

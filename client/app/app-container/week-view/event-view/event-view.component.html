@@ -1,0 +1,35 @@
+<div class="event-view-container">
+  <h3>Event details</h3>
+  <div class="content-container">
+    <mat-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon>description</mat-icon>
+        <h4 mat-line> Description: </h4>
+        <p mat-line> {{formattedData.description}} </p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-icon mat-list-icon>date_range</mat-icon>
+        <h4 mat-line>Event date interval:</h4>
+        <p mat-line> {{formattedData.dateInterval}} </p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-icon mat-list-icon>av_timer</mat-icon>
+        <h4 mat-line>Event time interval:</h4>
+        <p mat-line> {{formattedData.timeInterval}} </p>
+      </mat-list-item>
+      <ng-container *ngIf="formattedData.attendants.length > 0">
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <mat-icon mat-list-icon>account_circle</mat-icon>
+          <h4 mat-line>Attendants:</h4>
+          <p mat-line class="attendants" *ngFor="let att of formattedData.attendants"> {{att['name']}} </p>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </div>
+  <div class="button-container">
+    <button mat-raised-button (click)="dialogRef.close()" [disabled]="(deleting$ | async)">Close</button>
+  </div>
+</div>
