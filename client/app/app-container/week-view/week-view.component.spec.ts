@@ -64,10 +64,24 @@ describe('WeekViewComponent', () => {
     expect(component.isAfterToday(dateToVerify)).toBeTruthy();
   });
 
-/*  it('should generate week dates', () => {
+  it('should generate week dates', () => {
     const dates = component.fillDates(moment('2019-01-04T00:00:00'));
-    expect(dates).toEqual(expectedWeekDate());
-  });*/
+    const mappedData = dates.map(date => {
+      const newDate: any = Object.assign({}, date, {
+        startMoment: date.startMoment.format(),
+        endMoment: date.endMoment.format()
+      });
+      return newDate;
+    });
+    const mappedExpectedData = expectedWeekDate().map(date => {
+      const newDate: any = Object.assign({}, date, {
+        startMoment: date.startMoment.format(),
+        endMoment: date.endMoment.format()
+      });
+      return newDate;
+    });
+    expect(mappedData).toEqual(mappedExpectedData);
+  });
 
   it('should format hours: one digit', () => {
     const data = component.formatHour(1);
