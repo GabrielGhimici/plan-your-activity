@@ -15,6 +15,11 @@ export class UserController {
     return this.proxyService.handleProxy('/service')(request, response, next);
   }
 
+  @Post('/firstLogin')
+  updatePassword(@Request() request, @Response() response, @Next() next) {
+    return this.proxyService.handleBodyUpdateProxy('/service')(request, response, next);
+  }
+
   @Post('/logout')
   logOut(@Request() request, @Response() response, @Next() next) {
     return this.proxyService.handleBodyUpdateProxy('/service')(request, response, next);

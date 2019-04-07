@@ -17,6 +17,7 @@ export class AppContainerComponent implements OnInit {
   @select(['userData', 'userProfile', 'team', 'leader']) public leader$: Observable<boolean>;
   @select(['userData', 'userProfile']) public userProfile$: Observable<any>;
   @select(['logoutData', 'loggedOut']) public userDataLogout$: Observable<boolean>;
+  @select(['userData', 'userProfile', 'permanentAccount']) public permanentAccount$: Observable<boolean>;
 
   constructor(
     private userDataActions: UserDataActions,
@@ -26,6 +27,13 @@ export class AppContainerComponent implements OnInit {
 
   ngOnInit() {
     this.getUserProfile();
+    this.permanentAccount$
+      .filter((value: any) => !isNullOrUndefined(value))
+      .subscribe((value: boolean) => {
+        if (value === false) {
+          this.router.navigate(['/firstLogin']);
+        }
+      });
   }
 
   @dispatch()
