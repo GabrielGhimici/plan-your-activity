@@ -4,6 +4,7 @@ import { LogoutActions } from './logout.actions';
 import { createEpicMiddleware } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class LogoutEpic {
