@@ -1,0 +1,96 @@
+@import "../styles/palette";
+@import "../styles/global-values";
+
+mat-toolbar {
+  background-color: $app-main-color;
+  height: $header-height;
+  img {
+    height: calc(#{$header-height} - 8);
+  }
+  .header-spacer {
+    flex: 1 1 auto;
+  }
+  .home-link {
+    color: white;
+    height: 100%;
+    line-height: $header-height;
+    margin-right: 10px;
+  }
+  .user-accessor {
+    @include transparentBackgroundColor(0.85, white);
+    color: $app-main-color;
+    height: calc(#{$header-height} - 30px);
+    width: calc(#{$header-height} - 30px);
+    line-height: calc(#{$header-height} - 30px);
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 3px;
+    text-align: center;
+    margin: auto 10px auto 0;
+    text-transform: capitalize;
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+.body-container {
+  height: calc(100% - #{$header-height});
+  width: 100%;
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .user-card {
+    width: 500px;
+    height: 440px;
+    background-color: $card-background-color;
+    mat-card-header {
+      display: flex;
+      justify-content: center;
+      mat-card-title {
+        color: $app-main-color;
+        h2 {
+          font-weight: normal;
+        }
+      }
+    }
+    mat-card-content {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .full-width{
+        width: 90%;
+        margin-top: 18px;
+      }
+      mat-form-field {
+        /deep/.mat-form-field-suffix .mat-icon {
+          font-size: 115%;
+          margin-right: 4px;
+        }
+      }
+    }
+    mat-card-actions {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      button {
+        margin-top: 18px;
+        width: 35%;
+        background-color: $app-main-color;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .mat-spinner {
+        position: absolute;
+        margin-top: 18px;
+        left: calc((100% + 35%)/2);
+        /deep/ circle {
+          stroke: $app-main-color;
+        }
+      }
+    }
+  }
+}

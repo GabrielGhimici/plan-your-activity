@@ -20,6 +20,11 @@ export class UserController {
     return this.proxyService.handleBodyUpdateProxy('/service')(request, response, next);
   }
 
+  @Post('/register')
+  registerUser(@Request() request, @Response() response, @Next() next) {
+    return this.proxyService.handleBodyUpdateProxy('/service')(request, response, next);
+  }
+
   @Post('/logout')
   logOut(@Request() request, @Response() response, @Next() next) {
     return this.proxyService.handleBodyUpdateProxy('/service')(request, response, next);

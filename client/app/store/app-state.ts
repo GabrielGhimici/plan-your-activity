@@ -4,4 +4,5 @@ export interface AppState {
   logoutData?: any;
   userData?: any;
   changePasswordData?: any;
+  addUserData?: any;
 }

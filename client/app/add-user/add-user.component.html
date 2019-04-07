@@ -1,0 +1,68 @@
+<mat-toolbar>
+  <img src="../../assets/images/logo-small.png"/>
+  <span class="header-spacer"></span>
+  <a mat-button class="home-link" routerLink="../app">Home</a>
+  <span class="user-accessor" [matMenuTriggerFor]="userMenu">{{(userDataLoading$ | async) ? 'Z' : (userProfile$ | async)?.name[0]}}</span>
+  <mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="user-menu">
+    <mat-list>
+      <mat-list-item>
+        <div mat-line class="indicator">Name: </div>
+        <div mat-line class="main-info">{{(userProfile$ | async)?.name}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line class="indicator">Email: </div>
+        <div mat-line class="main-info">{{(userProfile$ | async)?.email}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line class="indicator">Birthday: </div>
+        <div mat-line class="main-info">{{(userProfile$ | async)?.born}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line class="indicator">Team name: </div>
+        <div mat-line class="main-info">{{(userProfile$ | async)?.team.name}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line class="indicator custom-line-height">Verified account:</div>
+        <mat-icon  class="success" *ngIf="(userProfile$ | async)?.permanentAccount">done</mat-icon>
+        <mat-icon  class="warn" *ngIf="!(userProfile$ | async)?.permanentAccount">clear</mat-icon>
+      </mat-list-item>
+    </mat-list>
+    <button mat-menu-item (click)="logOutUser()">LogOut</button>
+  </mat-menu>
+</mat-toolbar>
+<div class="body-container">
+  <form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm.value, addUserForm.valid)">
+    <mat-card class="user-card">
+      <mat-card-header>
+        <mat-card-title><h2>Add new user to your team.</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input #name matInput ngControl ngModel name='name' placeholder="Name" type="text" required>
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-error *ngIf="!addUserForm.controls.name?.valid">Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input #email matInput ngControl ngModel name='email' placeholder="Email" type="email" required pattern='[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="!addUserForm.controls.email?.valid">Email is required or invalid</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input #born matInput ngControl ngModel name='born' placeholder="Birth date(mm/dd/yyyy)" type="text" [matDatepicker]="picker" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-error *ngIf="!addUserForm.controls.born?.valid">Birth date is required or invalid</mat-error>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input #password matInput ngControl ngModel name='password' placeholder="Temporary password" type="password" required>
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="!addUserForm.controls.password?.valid">Temporary password is required</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button [disableRipple]="true">Add User</button>
+        <mat-spinner [diameter] = "36" [strokeWidth]="4" *ngIf="(addUserLoading$ | async)"></mat-spinner>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

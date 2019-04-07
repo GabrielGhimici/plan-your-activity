@@ -19,7 +19,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatProgressSpinnerModule, MatSnackBarModule, MatToolbarModule, MatMenuModule, MatListModule
+  MatProgressSpinnerModule, MatSnackBarModule, MatToolbarModule, MatMenuModule, MatListModule, MatNativeDateModule, MatDatepickerModule
 } from '@angular/material';
 import { LoginEpics } from './store/login/login.epic';
 import { LoginService } from './core/login/login.service';
@@ -40,6 +40,10 @@ import { ChangePasswordActions } from './store/change-password/change-password.a
 import { ChangePasswordEpics } from './store/change-password/change-password.epic';
 import { ChangePasswordService } from './core/change-password/change-password.service';
 import { FirstLoginGuard } from './first-login/first-login.guard';
+import { AddUserComponent } from './add-user/add-user.component';
+import { AddUserActions } from './store/add-user/add-user.actions';
+import { AddUserEpic } from './store/add-user/add-user.epic';
+import { AddUserGuard } from './add-user/add-user.guard';
 
 
 @NgModule({
@@ -48,7 +52,8 @@ import { FirstLoginGuard } from './first-login/first-login.guard';
     LoginComponent,
     PageNotFoundComponent,
     AppContainerComponent,
-    FirstLoginComponent
+    FirstLoginComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +77,8 @@ import { FirstLoginGuard } from './first-login/first-login.guard';
     MatToolbarModule,
     MatMenuModule,
     MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     AppRoutingModule
   ],
   providers: [
@@ -98,6 +105,9 @@ import { FirstLoginGuard } from './first-login/first-login.guard';
     ChangePasswordEpics,
     FirstLoginGuard,
     ChangePasswordService,
+    AddUserActions,
+    AddUserEpic,
+    AddUserGuard,
     RootEpics
   ],
   bootstrap: [AppComponent]
