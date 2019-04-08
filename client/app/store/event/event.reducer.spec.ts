@@ -14,6 +14,10 @@ describe('Event reducer', () => {
       order: [],
       byId: {},
       loading: true,
+      saving: false,
+      deleting: false,
+      saveSuccess: false,
+      deleteSuccess: false,
       error: null
     };
     expect(result).toEqual(expected);
@@ -25,6 +29,10 @@ describe('Event reducer', () => {
       order: [],
       byId: {},
       loading: false,
+      saving: false,
+      deleting: false,
+      saveSuccess: false,
+      deleteSuccess: false,
       error: new Error()
     };
     expect(result).toEqual(expected);
@@ -36,6 +44,10 @@ describe('Event reducer', () => {
       order: [],
       byId: {},
       loading: false,
+      saving: false,
+      deleting: false,
+      saveSuccess: false,
+      deleteSuccess: false,
       error: null
     };
     expect(result).toEqual(expected);
@@ -47,6 +59,10 @@ describe('Event reducer', () => {
       order: [],
       byId: {},
       loading: false,
+      saving: false,
+      deleting: false,
+      saveSuccess: false,
+      deleteSuccess: false,
       error: null
     };
     expect(result).toEqual(expected);
@@ -58,6 +74,10 @@ describe('Event reducer', () => {
       order: ['1', '4'],
       byId: eventsById,
       loading: false,
+      saving: false,
+      deleting: false,
+      saveSuccess: false,
+      deleteSuccess: false,
       error: null
     };
     expect(result).toEqual(expected);

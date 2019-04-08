@@ -1,7 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventViewComponent } from './event-view.component';
-import { MAT_DIALOG_DATA, MatDialogRef, MatIconModule, MatListModule } from '@angular/material';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+  MatIconModule,
+  MatListModule,
+  MatProgressSpinnerModule,
+  MatSnackBarModule
+} from '@angular/material';
+import { EventActions } from '../../../store/event/event.actions';
 
 describe('EventViewComponent', () => {
   let component: EventViewComponent;
@@ -12,9 +21,13 @@ describe('EventViewComponent', () => {
       declarations: [ EventViewComponent ],
       imports: [
         MatIconModule,
-        MatListModule
+        MatListModule,
+        MatProgressSpinnerModule,
+        MatDialogModule,
+        MatSnackBarModule
       ],
       providers: [
+        EventActions,
         {
           provide: MatDialogRef,
           useValue: fixture

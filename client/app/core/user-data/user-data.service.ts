@@ -28,4 +28,8 @@ export class UserDataService {
       return _;
     });
   }
+
+  getColleaguesData() {
+    return this.http.post('api/user/colleagues',{});
+  }
 }

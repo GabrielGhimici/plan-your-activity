@@ -33,10 +33,15 @@
             </mat-list-item>
           </ng-container>
         </mat-list>
+        <mat-action-row>
+          <button mat-raised-button (click)="editEvent(i)" [disabled]="(deleting$ | async)" *ngIf="canEdit()">Edit</button>
+          <button mat-raised-button (click)="deleteEvent(i)">Delete</button>
+          <mat-spinner [diameter] = "34" [strokeWidth]="4" *ngIf="(deleting$ | async)"></mat-spinner>
+        </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
   <div class="button-container">
-    <button mat-raised-button (click)="dialogRef.close()">Close</button>
+    <button mat-raised-button (click)="dialogRef.close()" [disabled]="(deleting$ | async)">Close</button>
   </div>
 </div>

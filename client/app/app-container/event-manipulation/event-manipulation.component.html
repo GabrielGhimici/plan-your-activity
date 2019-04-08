@@ -1,0 +1,36 @@
+<form #eventForm="ngForm" (ngSubmit)="saveEvent(eventForm.valid, eventForm.value)" class="full-width full-height">
+  <div class="event-view-container">
+    <h3>Add event</h3>
+    <div class="content-container">
+      <h4 class="full-width-80">Event date: {{formattedDate}}</h4>
+      <mat-form-field class="full-width-80">
+        <input #email matInput ngControl [(ngModel)]="eventData.description" name='description' placeholder="Description" type="text" required>
+        <mat-icon matSuffix>description</mat-icon>
+        <mat-error *ngIf="!eventForm.controls.description?.valid">Description is required</mat-error>
+      </mat-form-field>
+      <mat-form-field  class="full-width-80">
+        <input #email matInput ngControl [(ngModel)]="eventData.start_time" name='start_time' placeholder="Start time(hh:mm:ss)" type="text" pattern="^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)$" required>
+        <mat-icon matSuffix>av_timer</mat-icon>
+        <mat-error *ngIf="!eventForm.controls.start_time?.valid">Start time is required or invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-80">
+        <input #email matInput ngControl [(ngModel)]="eventData.finish_time" name='finish_time' placeholder="Finish time(hh:mm:ss)" type="text" pattern="^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)$" required>
+        <mat-icon matSuffix>av_timer</mat-icon>
+        <mat-error *ngIf="!eventForm.controls.finish_time?.valid">Finish time is required or invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-80" *ngIf="!data.event">
+        <mat-select placeholder="Select attendants" ngControl [(ngModel)]="eventData.attendants" name='attendants' [multiple]="true">
+          <mat-option *ngFor="let colleague of (colleagues$ | async)" [value]="colleague.id">
+            {{colleague.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <div class="button-container">
+      <button mat-raised-button type="button" (click)="dialogRef.close()" [disabled]="(saving$ | async)">Close</button>
+      <button mat-raised-button type="submit">Save</button>
+      <mat-spinner [diameter] = "34" [strokeWidth]="4" *ngIf="(saving$ | async)"></mat-spinner>
+    </div>
+  </div>
+</form>

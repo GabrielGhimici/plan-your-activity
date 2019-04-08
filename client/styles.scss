@@ -15,7 +15,6 @@ html, body {
   background-color: $app-background-color;
   font-family: $font-family;
 }
-
 .mat-dialog-container {
   background-color: $card-background-color;
 }
@@ -55,6 +54,57 @@ html, body {
       color: map_get($mat-blue-grey, 800);
       opacity: 0.8;
       font-weight: bold;
+    }
+  }
+}
+
+.invitations-menu /deep/ {
+  .mat-menu-content {
+    width: 100%;
+    min-height: 100px;
+    max-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    mat-list {
+      mat-list-item {
+        &:hover {
+          @include transparentBackgroundColor(0.25, map_get($mat-blue-grey, 400))
+        }
+        color: map_get($mat-blue-grey, 800);
+        user-select: none;
+        height: 60px !important;
+        .indicator{
+          font-size: 12px;
+          text-transform: uppercase;
+          opacity: 0.8;
+          &.custom-line-height {
+            line-height: 24px;
+            font-weight: bold;
+          }
+        }
+        .main-info {
+          font-size: 16px;
+          font-weight: bold;
+        }
+        mat-icon {
+          cursor: pointer;
+          &.success {
+            color: $app-success;
+          }
+          &.warn {
+            color: $app-warn;
+          }
+        }
+      }
+    }
+    .no-invitations {
+      width: 280px;
+      text-align: center;
+      color: map_get($mat-blue-grey, 800);
+      font-size: 12px;
+      opacity: 0.7;
+      font-style: italic;
     }
   }
 }
