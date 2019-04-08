@@ -2,6 +2,10 @@ export const defaultState = {
   order: [],
   byId: {},
   loading: false,
+  saving: false,
+  deleting: false,
+  saveSuccess: false,
+  deleteSuccess: false,
   error: null
 };
 

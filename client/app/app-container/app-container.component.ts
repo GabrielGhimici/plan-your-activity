@@ -37,7 +37,7 @@ export class AppContainerComponent implements OnInit {
   public CALENDAR_VIEW = CALENDAR_VIEW;
   public calView = this.CALENDAR_VIEW.MONTH;
   public invitationsById: any;
-  private allEvents: any = [];
+  public allEvents: any = [];
   constructor(private userDataActions: UserDataActions,
               private eventDataActions: EventActions,
               private colleaguesActions: ColleaguesActions,

@@ -2,11 +2,11 @@
   <img src="../../assets/images/logo-small.png"/>
   <span class="header-spacer"></span>
   <a mat-button class="add-user" routerLink="../add-user" *ngIf="(leader$ | async)">Add User</a>
-  <mat-icon [matMenuTriggerFor]="notificationsMenu" (click)="notificationsFirstView = false" [ngClass]="{'active': (notificationsFirstView && (invitationsOrder$ | async).length > 0)}">
-    {{(notificationsFirstView && (invitationsOrder$ | async).length > 0) ? 'notifications_active' : 'notifications'}}
+  <mat-icon [matMenuTriggerFor]="notificationsMenu" (click)="notificationsFirstView = false" [ngClass]="{'active': (notificationsFirstView && (invitationsOrder$ | async)?.length > 0)}">
+    {{(notificationsFirstView && (invitationsOrder$ | async)?.length > 0) ? 'notifications_active' : 'notifications'}}
   </mat-icon>
   <mat-menu #notificationsMenu="matMenu" [overlapTrigger]="false" class="invitations-menu">
-    <mat-list *ngIf="(invitationsOrder$ | async).length">
+    <mat-list *ngIf="(invitationsOrder$ | async)?.length">
       <mat-list-item *ngFor="let inv of (invitationsOrder$ | async)">
         <div mat-line class="indicator">{{formatDate(invitationsById[inv].event.start_date)}}: {{invitationsById[inv].event.description}}</div>
         <div mat-line class="main-info">{{invitationsById[inv].event.start_time}} - {{invitationsById[inv].event.finish_time}}</div>
@@ -14,7 +14,7 @@
         <mat-icon class="warn" (click)="rejectInvitation(inv)">clear</mat-icon>
       </mat-list-item>
     </mat-list>
-    <div *ngIf="!(invitationsOrder$ | async).length" class="no-invitations">There are no new requests in pending.</div>
+    <div *ngIf="!(invitationsOrder$ | async)?.length" class="no-invitations">There are no new requests in pending.</div>
   </mat-menu>
   <span class="user-accessor" [matMenuTriggerFor]="userMenu">{{(userDataLoading$ | async) ? 'Z' : (userProfile$ | async)?.name[0]}}</span>
   <mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="user-menu">

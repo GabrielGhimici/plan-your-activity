@@ -1,8 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventViewMonthComponent } from './event-view-month.component';
-import { MAT_DIALOG_DATA, MatDialogRef, MatExpansionModule, MatIconModule, MatListModule } from '@angular/material';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+  MatExpansionModule,
+  MatIconModule,
+  MatListModule, MatProgressSpinnerModule,
+  MatSnackBarModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventActions } from '../../../store/event/event.actions';
 
 let emptyTest = true;
 function generateData(empty: boolean) {
@@ -41,9 +50,13 @@ describe('EventViewMonthComponent', () => {
         MatExpansionModule,
         MatIconModule,
         MatListModule,
+        MatProgressSpinnerModule,
+        MatSnackBarModule,
+        MatDialogModule,
         BrowserAnimationsModule
       ],
       providers: [
+        EventActions,
         {
           provide: MatDialogRef,
           useValue: fixture
