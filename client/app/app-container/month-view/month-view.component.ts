@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { EventViewMonthComponent } from './event-view-month/event-view-month.component';
+import { EventManipulationComponent } from '../event-manipulation/event-manipulation.component';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -103,6 +104,16 @@ export class MonthViewComponent implements OnInit, OnChanges {
       height: '550px',
       width: '550px',
       data: { date: date, events: payloadEvents },
+      autoFocus: false,
+      disableClose: true
+    });
+  }
+
+  addEvent(date: moment.Moment) {
+    const dialogRef = this.dialog.open(EventManipulationComponent, {
+      height: '550px',
+      width: '550px',
+      data: { date: date, event: null },
       autoFocus: false,
       disableClose: true
     });

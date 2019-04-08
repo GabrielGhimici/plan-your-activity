@@ -2,6 +2,10 @@ export interface EventList {
   order: Array<any>;
   byId: any;
   loading: boolean;
+  saving: boolean;
+  deleting: boolean;
+  saveSuccess: boolean;
+  deleteSuccess: boolean;
   error: any;
 }
 

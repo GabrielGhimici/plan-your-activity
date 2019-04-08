@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import { TeamEvent } from '../../store/event/event.data';
 import { EventViewComponent } from './event-view/event-view.component';
+import { EventManipulationComponent } from '../event-manipulation/event-manipulation.component';
 
 export interface CalendarDate {
   startMoment: moment.Moment;
@@ -187,4 +188,13 @@ export class WeekViewComponent implements OnInit, OnChanges {
     });
   }
 
+  addEvent(date: moment.Moment) {
+    const dialogRef = this.dialog.open(EventManipulationComponent, {
+      height: '550px',
+      width: '550px',
+      data: { date: date, event: null },
+      autoFocus: false,
+      disableClose: true
+    });
+  }
 }

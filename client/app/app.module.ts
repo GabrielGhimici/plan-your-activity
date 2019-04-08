@@ -26,7 +26,7 @@ import {
   MatListModule,
   MatNativeDateModule,
   MatDatepickerModule,
-  MatButtonToggleModule, MatGridListModule, MatTooltipModule, MatExpansionModule
+  MatButtonToggleModule, MatGridListModule, MatTooltipModule, MatExpansionModule, MatSelectModule
 } from '@angular/material';
 import { LoginEpics } from './store/login/login.epic';
 import { LoginService } from './core/login/login.service';
@@ -58,6 +58,11 @@ import { MonthViewComponent } from './app-container/month-view/month-view.compon
 import { WeekViewComponent } from './app-container/week-view/week-view.component';
 import { EventViewComponent } from './app-container/week-view/event-view/event-view.component';
 import { EventViewMonthComponent } from './app-container/month-view/event-view-month/event-view-month.component';
+import { ColleaguesActions } from './store/colleagues/colleagues.actions';
+import { ColleaguesEpic } from './store/colleagues/colleagues.epic';
+import { InvitationsActions } from './store/invitations/invitations.actions';
+import { InvitationsEpic } from './store/invitations/invitations.epic';
+import { EventManipulationComponent } from './app-container/event-manipulation/event-manipulation.component';
 
 
 @NgModule({
@@ -71,7 +76,8 @@ import { EventViewMonthComponent } from './app-container/month-view/event-view-m
     MonthViewComponent,
     WeekViewComponent,
     EventViewComponent,
-    EventViewMonthComponent
+    EventViewMonthComponent,
+    EventManipulationComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +107,7 @@ import { EventViewMonthComponent } from './app-container/month-view/event-view-m
     MatGridListModule,
     MatTooltipModule,
     MatExpansionModule,
+    MatSelectModule,
     AppRoutingModule
   ],
   providers: [
@@ -133,9 +140,13 @@ import { EventViewMonthComponent } from './app-container/month-view/event-view-m
     EventActions,
     EventEpic,
     EventService,
+    ColleaguesActions,
+    ColleaguesEpic,
+    InvitationsActions,
+    InvitationsEpic,
     RootEpics
   ],
-  entryComponents: [EventViewComponent, EventViewMonthComponent],
+  entryComponents: [EventViewComponent, EventViewMonthComponent, EventManipulationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

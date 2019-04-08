@@ -24,12 +24,15 @@
         <mat-list-item>
           <mat-icon mat-list-icon>account_circle</mat-icon>
           <h4 mat-line>Attendants:</h4>
-          <p mat-line class="attendants" *ngFor="let att of formattedData.attendants"> {{att['name']}} </p>
+          <p mat-line class="attendants" *ngFor="let att of formattedData.attendants"> {{att.name}} </p>
         </mat-list-item>
       </ng-container>
     </mat-list>
   </div>
   <div class="button-container">
     <button mat-raised-button (click)="dialogRef.close()" [disabled]="(deleting$ | async)">Close</button>
+    <button mat-raised-button (click)="editEvent()" [disabled]="(deleting$ | async)" *ngIf="canEdit()">Edit</button>
+    <button mat-raised-button (click)="deleteEvent()">Delete</button>
+    <mat-spinner [diameter] = "34" [strokeWidth]="4" *ngIf="(deleting$ | async)"></mat-spinner>
   </div>
 </div>
