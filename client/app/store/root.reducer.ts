@@ -5,6 +5,7 @@ import { logoutReducer } from './logout/logout.reducer';
 import { userDataReducer } from './user-data/user-data.reducer';
 import { changePasswordReducer } from './change-password/change-password.reducer';
 import { addUserReducer } from './add-user/add-user.reducer';
+import { eventReducer } from './event/event.reducer';
 
 export const rootReducer = combineReducers({
   router: routerReducer,
@@ -13,5 +14,6 @@ export const rootReducer = combineReducers({
   userData: userDataReducer,
   changePasswordData: changePasswordReducer,
   addUserData: addUserReducer,
+  events: eventReducer,
 });
 

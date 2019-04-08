@@ -31,5 +31,19 @@
   </mat-menu>
 </mat-toolbar>
 <div class="body-container">
-
+  <div class="progress-loader" *ngIf="(userDataLoading$ | async) || (eventsLoading$ | async)">
+    <mat-spinner></mat-spinner>
+  </div >
+  <mat-card *ngIf="!(userDataLoading$ | async) && !(eventsLoading$ | async)">
+    <div class="view-selector">
+      <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="calView">
+        <mat-button-toggle [value]="CALENDAR_VIEW.MONTH">MonthView</mat-button-toggle>
+        <mat-button-toggle [value]="CALENDAR_VIEW.WEEK">WeekView</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="view-container">
+      <app-month-view *ngIf="calView === CALENDAR_VIEW.MONTH" [events]="(events$ | async)"></app-month-view>
+      <app-week-view *ngIf="calView === CALENDAR_VIEW.WEEK" [events]="(events$ | async)"></app-week-view>
+    </div>
+  </mat-card>
 </div>

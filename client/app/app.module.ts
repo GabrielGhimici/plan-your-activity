@@ -19,7 +19,14 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatProgressSpinnerModule, MatSnackBarModule, MatToolbarModule, MatMenuModule, MatListModule, MatNativeDateModule, MatDatepickerModule
+  MatProgressSpinnerModule,
+  MatSnackBarModule,
+  MatToolbarModule,
+  MatMenuModule,
+  MatListModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
+  MatButtonToggleModule, MatGridListModule, MatTooltipModule, MatExpansionModule
 } from '@angular/material';
 import { LoginEpics } from './store/login/login.epic';
 import { LoginService } from './core/login/login.service';
@@ -44,6 +51,13 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddUserActions } from './store/add-user/add-user.actions';
 import { AddUserEpic } from './store/add-user/add-user.epic';
 import { AddUserGuard } from './add-user/add-user.guard';
+import { EventActions } from './store/event/event.actions';
+import { EventEpic } from './store/event/event.epic';
+import { EventService } from './core/event/event.service';
+import { MonthViewComponent } from './app-container/month-view/month-view.component';
+import { WeekViewComponent } from './app-container/week-view/week-view.component';
+import { EventViewComponent } from './app-container/week-view/event-view/event-view.component';
+import { EventViewMonthComponent } from './app-container/month-view/event-view-month/event-view-month.component';
 
 
 @NgModule({
@@ -53,7 +67,11 @@ import { AddUserGuard } from './add-user/add-user.guard';
     PageNotFoundComponent,
     AppContainerComponent,
     FirstLoginComponent,
-    AddUserComponent
+    AddUserComponent,
+    MonthViewComponent,
+    WeekViewComponent,
+    EventViewComponent,
+    EventViewMonthComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +97,10 @@ import { AddUserGuard } from './add-user/add-user.guard';
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatButtonToggleModule,
+    MatGridListModule,
+    MatTooltipModule,
+    MatExpansionModule,
     AppRoutingModule
   ],
   providers: [
@@ -108,8 +130,12 @@ import { AddUserGuard } from './add-user/add-user.guard';
     AddUserActions,
     AddUserEpic,
     AddUserGuard,
+    EventActions,
+    EventEpic,
+    EventService,
     RootEpics
   ],
+  entryComponents: [EventViewComponent, EventViewMonthComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
